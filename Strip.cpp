@@ -416,6 +416,9 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
     break;    
 
     default:
+      data = val ? mRGB(conf.r, conf.g, conf.b) : mRGB(0,0,0); 
+      for(i=0; i< conf.count; i++)
+        port->send(data);
     break;
   }
 }

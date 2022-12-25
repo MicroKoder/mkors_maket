@@ -35,5 +35,5 @@ typedef struct
   int offset;
 } strip_stat_t;
 
-
+void ProcessAllStrips();
 #endif

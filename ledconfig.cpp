@@ -414,7 +414,11 @@ void LedDriverTask()
           if (vd.port2 == PORT_I2C_1)
             _pwm1->setPWM(vd.pin2, c1? 0:4095, c1 ? 4095:0);       // 
       break;
-      case PORT_I2C_2: break;
+      case PORT_I2C_2: 
+        _pwm2->setPWM(vd.pin1, c1? 4095:0, c1 ? 0: 4095);       // 
+          if (vd.port2 == PORT_I2C_1)
+            _pwm2->setPWM(vd.pin2, c1? 0:4095, c1 ? 4095:0);       // 
+      break;
       default:break;
     }
   }

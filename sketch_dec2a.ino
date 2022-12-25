@@ -6,6 +6,7 @@
 #include "Strip.h"
 
 Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x7f, Wire);
+Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x00, Wire);
 ModbusRTUServerClass modbus = ModbusRTUServerClass();
 
 TaskHandler taskHandler = TaskHandler();
@@ -18,20 +19,20 @@ void TestTask()
 }
 
 void setup() {
-  VDInit(&pwm1, 0, &modbus);
+  VDInit(&pwm1, &pwm2, &modbus);
 
   pwm1.begin();  
   modbus.begin(1,19200);
   modbus.configureHoldingRegisters(0,20);
   modbus.configureInputRegisters(0,2);
-  modbus.configureCoils(0,100);  
+  modbus.configureCoils(0,200);  
   
   taskHandler.RegisterTask(&TestTask,1000);
   taskHandler.RegisterTask(&LedDriverTask, 100);
 
  //  ---- strip setup ------
   STRIP_setModbusServer(&modbus);
-  //taskHandler.RegisterTask(&STRIP_processPort1, 200);
+  taskHandler.RegisterTask(&ProcessAllStrips, 200);
 }
 /*void show1()
 {
