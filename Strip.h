@@ -32,7 +32,7 @@ typedef struct
 
 typedef struct
 {
-  int offset;
+  int offset=0;
 } strip_stat_t;
 
 void ProcessAllStrips();

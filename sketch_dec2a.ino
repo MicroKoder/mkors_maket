@@ -5,6 +5,10 @@
 #include "taskhandler.h" 
 #include "Strip.h"
 
+#define BAUDRATE 19200
+#define HREG_COUNT 20
+#define IREG_COUNT 2
+#define COIL_COUNT 200
 Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x7f, Wire);
 Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x00, Wire);
 ModbusRTUServerClass modbus = ModbusRTUServerClass();
@@ -22,17 +26,20 @@ void setup() {
   VDInit(&pwm1, &pwm2, &modbus);
 
   pwm1.begin();  
-  modbus.begin(1,19200);
-  modbus.configureHoldingRegisters(0,20);
-  modbus.configureInputRegisters(0,2);
-  modbus.configureCoils(0,200);  
+  modbus.begin(1,BAUDRATE);
+  modbus.configureHoldingRegisters(0,HREG_COUNT);
+  modbus.configureInputRegisters(0,IREG_COUNT);
+  modbus.configureCoils(0,COIL_COUNT);  
+
+  for (int i = 0; i < COIL_COUNT; i++)
+     modbus.coilWrite(i,0);
   
   taskHandler.RegisterTask(&TestTask,1000);
-  taskHandler.RegisterTask(&LedDriverTask, 100);
+  taskHandler.RegisterTask(&LedDriverTask, 1000);
 
  //  ---- strip setup ------
   STRIP_setModbusServer(&modbus);
-  taskHandler.RegisterTask(&ProcessAllStrips, 200);
+  taskHandler.RegisterTask(&ProcessAllStrips, 1000);
 }
 /*void show1()
 {
