@@ -33,6 +33,7 @@ typedef struct
 typedef struct
 {
   int offset=0;
+  int prevVal=0;
 } strip_stat_t;
 
 void ProcessAllStrips();

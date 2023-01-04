@@ -5,7 +5,7 @@
 #include "taskhandler.h" 
 #include "Strip.h"
 
-#define BAUDRATE 19200
+#define BAUDRATE 115200
 #define HREG_COUNT 20
 #define IREG_COUNT 2
 #define COIL_COUNT 200
@@ -39,7 +39,7 @@ void setup() {
 
  //  ---- strip setup ------
   STRIP_setModbusServer(&modbus);
-  taskHandler.RegisterTask(&ProcessAllStrips, 1000);
+  taskHandler.RegisterTask(&ProcessAllStrips, 100);
 }
 /*void show1()
 {

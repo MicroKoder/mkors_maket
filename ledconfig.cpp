@@ -361,6 +361,22 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 70,
 		.nCoil2 = 71
 	},
+  //B1
+  {
+		.port1 = PORT_I2C_2,
+		.pin1 = 14,
+		.port2 = PORT_NONE,
+		.pin2 = 0,
+		.nCoil1 = 72
+	},
+  //B2
+  {
+		.port1 = PORT_I2C_2,
+		.pin1 = 15,
+		.port2 = PORT_NONE,
+		.pin2 = 0,
+		.nCoil1 = 73		
+	}
 };
 
 vd_t GetVDConfig(int nLed)

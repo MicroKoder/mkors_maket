@@ -363,7 +363,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   }
 };
 const int portStrip0[] = {48-1, 49-1, 50-1, 51-1, 52-1, 53-1, 54-1, 55-1, 1-1};   
-const int portStrip1[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};
+const int portStrip1[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static
 const int portStrip2[] = {45-1, 6-1, 44-1};
 const int portStrip3[] = {8-1};
 const int portStrip4[] = {9-1, 10-1};
@@ -500,9 +500,29 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
     break;
   }
 }
+
+int prevStaticValue=0;
 template  <class T>
-void processPort(T* port, const int portStrip[], int stripCnt)
+void processPort(T* port, const int portStrip[], int stripCnt, bool allStatic=false)
 {
+  int value = 0;
+  if (allStatic)
+  {
+    
+    for (int i =0; i<stripCnt; i++)
+      value += pModbus->coilRead(strip[portStrip[i]].coil);
+
+      //не обновлять ленту если не было изменений нигде
+    if (prevStaticValue == value)
+      return;
+
+    //else
+    prevStaticValue = value;
+  }
+  
+  
+    
+  
   port->begin();  
   for (int i =0; i< stripCnt; i++)
     processStrip<T>(port,strip[portStrip[i]], strip_stat[portStrip[i]]);  
@@ -511,9 +531,9 @@ void processPort(T* port, const int portStrip[], int stripCnt)
 
 void ProcessAllStrips()
 {
-cli();
+//cli();
     processPort<strip_port0_t>(&port0, portStrip0, sizeof(portStrip0)/sizeof(int))  ;  
-    processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int))  ;  
+    processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int), true)  ;  
     processPort<strip_port2_t>(&port2, portStrip2, sizeof(portStrip2)/sizeof(int))  ;  
     processPort<strip_port3_t>(&port3, portStrip3, sizeof(portStrip3)/sizeof(int))  ;  
     processPort<strip_port4_t>(&port4, portStrip4, sizeof(portStrip4)/sizeof(int))  ;  
@@ -526,7 +546,7 @@ cli();
     processPort<strip_port11_t>(&port11, portStrip11, sizeof(portStrip11)/sizeof(int))  ;  
     processPort<strip_port12_t>(&port12, portStrip12, sizeof(portStrip12)/sizeof(int))  ;  
     processPort<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  
-  sei();
+ // sei();
 }
 /*void STRIP_processPort1()
 {

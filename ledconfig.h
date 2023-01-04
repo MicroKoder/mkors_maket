@@ -5,7 +5,7 @@
 #include <Adafruit_PWMServoDriver.h>
 #include <ArduinoModbus.h>
 
-#define VD_NUM 41
+#define VD_NUM 43
 
 typedef enum{
   PORT_NONE,
