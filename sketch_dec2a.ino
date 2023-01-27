@@ -5,8 +5,8 @@
 #include "taskhandler.h" 
 #include "Strip.h"
 
-#define BAUDRATE 115200
-#define HREG_COUNT 20
+#define BAUDRATE 9600
+#define HREG_COUNT 30
 #define IREG_COUNT 2
 #define COIL_COUNT 200
 Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x7f, Wire);
@@ -17,9 +17,11 @@ TaskHandler taskHandler = TaskHandler();
 unsigned long systick;
 
 static int testValue=0;
+
 void TestTask()
 {
    modbus.inputRegisterWrite(0,testValue++);
+
 }
 
 void setup() {
@@ -30,6 +32,7 @@ void setup() {
   modbus.configureHoldingRegisters(0,HREG_COUNT);
   modbus.configureInputRegisters(0,IREG_COUNT);
   modbus.configureCoils(0,COIL_COUNT);  
+ 
 
   for (int i = 0; i < COIL_COUNT; i++)
      modbus.coilWrite(i,0);

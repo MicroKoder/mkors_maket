@@ -2,6 +2,7 @@
 #include <microLED.h>
 #define LED_STRIPE_COUNT 55
 
+enum EZoneStat {EZ_OK, EZ_FIRE, EZ_FREEZE, EZ_LEAKAGE10, EZ_LEAKAGE20};
 
 const strip_config_t strip[LED_STRIPE_COUNT]={
   // led 1
@@ -31,7 +32,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_RUN_FORWARD,
   .r = 0, .g = 0, .b = 255  
   },
-  //5  ????
+  //5  байпас из НГС в РГС
    {
   .coil = 104,  .count = 10,
   .mode =   LED_RUN_FORWARD,
@@ -67,7 +68,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
-   //11 - ???
+   //11 - байпас на свечу рассеивания
    {
   .coil = 106,  .count = 10,
   .mode =   LED_RUN_FORWARD,
@@ -183,79 +184,79 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //30 - разгерметизация трубы до НГС
    {
-  .coil = 130,  .count = 16,
+  .coil = 10,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //31 - газ НГС
    {
-  .coil = 131,  .count = 16,
+  .coil = 11,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //32 - газ НГС
    {
-  .coil = 132,  .count = 16,
+  .coil = 12,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //33 - газ труба в ргс
    {
-  .coil = 133,  .count = 16,
+  .coil = 13,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //34 - газ труба в ргс
    {
-  .coil = 134,  .count = 16,
+  .coil = 14,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //35 - газ 
    {
-  .coil = 135,  .count = 16,
+  .coil = 15,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //36 - газ 
    {
-  .coil = 136,  .count = 16,
+  .coil = 16,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //37 - газ насос 
    {
-  .coil = 137,  .count = 16,
+  .coil = 17,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //38 - газ насос 
    {
-  .coil = 138,  .count = 16,
+  .coil = 18,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //39 - газ насос 
    {
-  .coil = 139,  .count = 16,
+  .coil = 19,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //40 - газ разлив нефти
    {
-  .coil = 140,  .count = 16,
+  .coil = 20,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //41 - газ разлив нефти 
    {
-  .coil = 141,  .count = 16,
+  .coil = 21,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
   //42 - газ разлив продуктов
    {
-  .coil = 142,  .count = 16,
+  .coil = 22,  .count = 16,
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
@@ -377,20 +378,20 @@ const int portStrip11[] = {12-1};
 const int portStrip12[] =  {29-1};
 const int portStrip13[] =  {30-1,31-1,32-1,33-1,34-1,35-1,36-1,37-1,38-1,39-1,40-1,41-1,42-1};
 
-typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB> strip_port0_t;
-typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB> strip_port1_t;
-typedef microLED<0, 4, -1, LED_WS2812, ORDER_GRB> strip_port2_t;
-typedef microLED<0, 5, -1, LED_WS2812, ORDER_GRB> strip_port3_t;
-typedef microLED<0, 6, -1, LED_WS2812, ORDER_GRB> strip_port4_t;
-typedef microLED<0, 7, -1, LED_WS2812, ORDER_GRB> strip_port5_t;
-typedef microLED<0, 8, -1, LED_WS2812, ORDER_GRB> strip_port6_t;
-typedef microLED<0, 9, -1, LED_WS2812, ORDER_GRB> strip_port7_t;
-typedef microLED<0, 10, -1, LED_WS2812, ORDER_GRB> strip_port8_t;
-typedef microLED<0, 11, -1, LED_WS2812, ORDER_GRB> strip_port9_t;
-typedef microLED<0, 12, -1, LED_WS2812, ORDER_GRB> strip_port10_t;
-typedef microLED<0, 13, -1, LED_WS2812, ORDER_GRB> strip_port11_t;
-typedef microLED<0, 44, -1, LED_WS2812, ORDER_GRB> strip_port12_t;
-typedef microLED<0, 45, -1, LED_WS2812, ORDER_GRB> strip_port13_t;
+typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port0_t;
+typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port1_t;
+typedef microLED<0, 4, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port2_t;
+typedef microLED<0, 5, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port3_t;
+typedef microLED<0, 6, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port4_t;
+typedef microLED<0, 7, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port5_t;
+typedef microLED<0, 8, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port6_t;
+typedef microLED<0, 9, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port7_t;
+typedef microLED<0, 10, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port8_t;
+typedef microLED<0, 11, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port9_t;
+typedef microLED<0, 12, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port10_t;
+typedef microLED<0, 13, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port11_t;
+typedef microLED<0, 44, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port12_t;
+typedef microLED<208, 45, -1, LED_WS2812, ORDER_GRB, CLI_HIGH> strip_port13_t;
 
 strip_port0_t port0;
 strip_port1_t port1;
@@ -419,10 +420,9 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
   int val = pModbus->coilRead(conf.coil);
   mData data[2] = {mRGB(conf.r, conf.g, conf.b), mRGB(0,0,0)};
   
-  mData matrix_inner[16] = { data[1], data[1], data[1], data[1], data[1], data[0], data[0], data[1],data[1],data[0],data[0],data[1],data[1],data[1],data[1],data[1]}; 
-  mData matrix_outer[16] = { data[0], data[0], data[0], data[0], data[0], data[1], data[1], data[0],data[0],data[1],data[1],data[0],data[0],data[0],data[0],data[0]}; 
+  
   //clear strip if 0
-  if (!val && conf.mode != LED_LEVEL)  
+  if (!val && conf.mode != LED_LEVEL && conf.mode != LED_GAZ)  
   {
     for (int i = 0; i < conf.count; i++)
           {         
@@ -478,16 +478,7 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
         stat.offset--;
   break;
   case LED_GAZ:  //для матрицы 4*4
-      if (stat.offset>5)
-        for (int i = 0; i < conf.count; i++)
-          port->send(matrix_inner[i]);
-      else
-        for (int i = 0; i < conf.count; i++)
-          port->send(matrix_outer[i]);
-
-      stat.offset++;
-      if (stat.offset>9)      
-        stat.offset = 0;                        
+     
   break;
   case LED_PULSE: //пульсация
   break;
@@ -499,6 +490,54 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
         port->send(val ? data[0] : data[1]);
     break;
   }
+}
+mData data_buf[1000];
+
+template  <class T>
+int loadStrip(T* port, const strip_config_t &conf, strip_stat_t &stat, int nStart)
+{
+  mData data[2] = {mRGB(conf.r, conf.g, conf.b), mRGB(0,0,0)};
+   int s = pModbus->holdingRegisterRead(conf.coil);
+      if (s== EZ_OK)
+      {
+        data[0] = mRGB(0, 0, 0);
+      }else if (s >= EZ_LEAKAGE10)
+      {
+        data[0] = mRGB(255, 255, 0);
+      }else if (s == EZ_FREEZE)
+      {
+        data[0] = mRGB(0, 0, 255);
+      }else if (s == EZ_FIRE)
+      {
+        data[0] = mRGB(255, 0, 0);
+      }
+      
+      mData matrix_inner[16] = { data[1], data[1], data[1], data[1], data[1], data[0], data[0], data[1],data[1],data[0],data[0],data[1],data[1],data[1],data[1],data[1]}; 
+      mData matrix_outer[16] = { data[0], data[0], data[0], data[0], data[0], data[1], data[1], data[0],data[0],data[1],data[1],data[0],data[0],data[0],data[0],data[0]}; 
+      
+      if (stat.offset>5)
+        for (int i = 0; i < conf.count; i++)     
+         port->set(nStart+i, matrix_inner[i]);	    
+         // port->send(matrix_inner[i]);
+      else
+        for (int i = 0; i < conf.count; i++)
+          port->set(nStart+i, matrix_outer[i]);	    
+          //port->send(matrix_outer[i]);
+
+      stat.offset++;
+      if (stat.offset>9)      
+        stat.offset = 0;       
+
+  return conf.count;                 
+}
+template  <class T>
+void processPortBuffered(T* port, const int portStrip[], int stripCnt, bool allStatic=false)
+{
+  int total=0;
+  for (int i =0; i< stripCnt; i++)
+    total += loadStrip(port,strip[portStrip[i]], strip_stat[portStrip[i]], total);  
+
+  port->show();
 }
 
 int prevStaticValue=0;
@@ -528,7 +567,7 @@ void processPort(T* port, const int portStrip[], int stripCnt, bool allStatic=fa
     processStrip<T>(port,strip[portStrip[i]], strip_stat[portStrip[i]]);  
   port->end();
 }
-
+extern ModbusRTUServerClass modbus;
 void ProcessAllStrips()
 {
 //cli();
@@ -545,7 +584,7 @@ void ProcessAllStrips()
     processPort<strip_port10_t>(&port10, portStrip10, sizeof(portStrip10)/sizeof(int))  ;  
     processPort<strip_port11_t>(&port11, portStrip11, sizeof(portStrip11)/sizeof(int))  ;  
     processPort<strip_port12_t>(&port12, portStrip12, sizeof(portStrip12)/sizeof(int))  ;  
-    processPort<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  
+    processPortBuffered<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  
  // sei();
 }
 /*void STRIP_processPort1()

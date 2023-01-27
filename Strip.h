@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <ArduinoModbus.h>
 #include <Arduino.h>
-
+#define COLOR_DEBTH 1   // цветовая глубина: 1, 2, 3 (в байтах)
 
 //void STRIP_processPort1();
 void STRIP_setModbusServer(ModbusRTUServerClass* mbus);
