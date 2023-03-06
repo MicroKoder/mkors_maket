@@ -5,7 +5,7 @@
 #include "taskhandler.h" 
 #include "Strip.h"
 
-#define BAUDRATE 9600
+#define BAUDRATE 19200
 #define HREG_COUNT 30
 #define IREG_COUNT 2
 #define COIL_COUNT 200
@@ -37,6 +37,7 @@ void setup() {
   for (int i = 0; i < COIL_COUNT; i++)
      modbus.coilWrite(i,0);
   
+ // modbus.coilWrite(121,1);  //test
   taskHandler.RegisterTask(&TestTask,1000);
   taskHandler.RegisterTask(&LedDriverTask, 1000);
 
@@ -44,20 +45,7 @@ void setup() {
   STRIP_setModbusServer(&modbus);
   taskHandler.RegisterTask(&ProcessAllStrips, 100);
 }
-/*void show1()
-{
 
- mData data = mRGB(0,0,255);
- strip1.begin();
- 
- for(int i=0; i<5; i++)
-   strip1.send(data);
-
-  strip1.end();
-
- delay(10);
-
-}*/
 
 void loop(){
   modbus.poll(); 

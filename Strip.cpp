@@ -16,7 +16,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },   
   //2
    {
-  .coil = 101,  .count = 10,
+  .coil = 101,  .count = 40,
   .mode =   LED_RUN_FORWARD,
   .r = 0, .g = 0, .b = 255  
   },
@@ -136,41 +136,41 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //22 - уровень НГС
    {
-  .coil = 120,  .count = 200,
+  .coil = 120,  .count = 132,   //******ОТЛАЖЕНО    верхнее кольцо
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //23 - уровень НГС
    {
-  .coil = 121,  .count = 200,
+  .coil = 121,  .count = 141, //***** ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //24 - уровень НГС
    {
-  .coil = 122,  .count = 200,
+  .coil = 122,  .count = 145, //*** ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },  
   //25 - уровень НГС
    {
-  .coil = 123,  .count = 200,
+  .coil = 123,  .count = 141, //**** ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //26 - уровень НГС
    {
-  .coil = 124,  .count = 200,
+  .coil = 124,  .count = 132,   //** ОТЛАЖЕНО 132
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 0  //ж
   },
   //27 - уровень НГС
    {
-  .coil = 125,  .count = 200,
+  .coil = 125,  .count = 100, // ?? НЕТУ ??
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 0  //ж
   },
-  //28 - уровень НГС
+  //28 - уровень НГС // ?? НЕТУ ??
    {
   .coil = 126,  .count = 200,
   .mode =   LED_STATIC,
@@ -272,7 +272,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //ж
   },
-  //45 - уровнь в НГС низ синий
+  //45 - уровнь в НГС верх синий
    {
   .coil = 121,  .count = 10,
   .mode =   LED_STATIC,
@@ -364,7 +364,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   }
 };
 const int portStrip0[] = {48-1, 49-1, 50-1, 51-1, 52-1, 53-1, 54-1, 55-1, 1-1};   
-const int portStrip1[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static
+const int portStrip1[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
 const int portStrip2[] = {45-1, 6-1, 44-1};
 const int portStrip3[] = {8-1};
 const int portStrip4[] = {9-1, 10-1};
@@ -379,9 +379,9 @@ const int portStrip12[] =  {29-1};
 const int portStrip13[] =  {30-1,31-1,32-1,33-1,34-1,35-1,36-1,37-1,38-1,39-1,40-1,41-1,42-1};
 
 typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port0_t;
-typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port1_t;
-typedef microLED<0, 4, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port2_t;
-typedef microLED<0, 5, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port3_t;
+typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port1_t;
+typedef microLED<0, 4, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port2_t;
+typedef microLED<0, 5, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port3_t;
 typedef microLED<0, 6, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port4_t;
 typedef microLED<0, 7, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port5_t;
 typedef microLED<0, 8, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port6_t;
@@ -571,10 +571,10 @@ extern ModbusRTUServerClass modbus;
 void ProcessAllStrips()
 {
 //cli();
-    processPort<strip_port0_t>(&port0, portStrip0, sizeof(portStrip0)/sizeof(int))  ;  
-    processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int), true)  ;  
+   // processPort<strip_port0_t>(&port0, portStrip0, sizeof(portStrip0)/sizeof(int))  ;  
+  //  processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int), true)  ;  
     processPort<strip_port2_t>(&port2, portStrip2, sizeof(portStrip2)/sizeof(int))  ;  
-    processPort<strip_port3_t>(&port3, portStrip3, sizeof(portStrip3)/sizeof(int))  ;  
+  /*  processPort<strip_port3_t>(&port3, portStrip3, sizeof(portStrip3)/sizeof(int))  ;  
     processPort<strip_port4_t>(&port4, portStrip4, sizeof(portStrip4)/sizeof(int))  ;  
     processPort<strip_port5_t>(&port5, portStrip5, sizeof(portStrip5)/sizeof(int))  ;  
     processPort<strip_port6_t>(&port6, portStrip6, sizeof(portStrip6)/sizeof(int))  ;  
@@ -584,7 +584,7 @@ void ProcessAllStrips()
     processPort<strip_port10_t>(&port10, portStrip10, sizeof(portStrip10)/sizeof(int))  ;  
     processPort<strip_port11_t>(&port11, portStrip11, sizeof(portStrip11)/sizeof(int))  ;  
     processPort<strip_port12_t>(&port12, portStrip12, sizeof(portStrip12)/sizeof(int))  ;  
-    processPortBuffered<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  
+    processPortBuffered<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  */
  // sei();
 }
 /*void STRIP_processPort1()
