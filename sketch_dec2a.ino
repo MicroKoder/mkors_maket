@@ -9,8 +9,8 @@
 #define HREG_COUNT 30
 #define IREG_COUNT 2
 #define COIL_COUNT 200
-Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x7f, Wire);
-Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x00, Wire);
+Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x1, Wire);
+Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x2, Wire);
 ModbusRTUServerClass modbus = ModbusRTUServerClass();
 
 TaskHandler taskHandler = TaskHandler();
@@ -37,7 +37,8 @@ void setup() {
   for (int i = 0; i < COIL_COUNT; i++)
      modbus.coilWrite(i,0);
   
- // modbus.coilWrite(121,1);  //test
+  modbus.coilWrite(104,1);  //test
+ // modbus.coilWrite(102,1);  //test
   taskHandler.RegisterTask(&TestTask,1000);
   taskHandler.RegisterTask(&LedDriverTask, 1000);
 

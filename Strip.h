@@ -32,7 +32,7 @@ typedef struct
 
 typedef struct
 {
-  int offset=0;
+  uint8_t offset=0;
   int prevVal=0;
 } strip_stat_t;
 

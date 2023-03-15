@@ -1,41 +1,41 @@
 #include "Strip.h"
 #include <microLED.h>
-#define LED_STRIPE_COUNT 55
+#define LED_STRIPE_COUNT 50
 
 enum EZoneStat {EZ_OK, EZ_FIRE, EZ_FREEZE, EZ_LEAKAGE10, EZ_LEAKAGE20};
 
 const strip_config_t strip[LED_STRIPE_COUNT]={
-  // led 1
+  // led 1 труба от АГЗУ в НГС, ОТЛАЖЕНО количество и направление
   {
-  .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .coil = 100,  
+  .count = 15,
+  .mode =   LED_RUN_BACKWARD,
   .r = 0, 
   .g = 0, 
   .b = 255  
   },   
-  //2
+  //2 - НГС в РГС ОТЛАЖЕНО
    {
-  .coil = 101,  .count = 40,
+  .coil = 101,  .count = 35,  
   .mode =   LED_RUN_FORWARD,
   .r = 0, .g = 0, .b = 255  
   },
-  //3
+  //3 выход насоса НУ в АСН ОТЛАЖЕНО
    {
-  .coil = 102,  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .coil = 102,  .count = 115,
+  .mode =   LED_RUN_FROM_CENTER,
   .r = 0, .g = 0, .b = 255  
   },
-  //4
+  //4 от РГС в НУ ОТЛАЖЕНО
    {
-  .coil = 103,  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .coil = 103,  .count = 50,
+  .mode =   LED_RUN_TO_CENTER,
   .r = 0, .g = 0, .b = 255  
   },
-  //5  байпас из НГС в РГС
+  //5  байпас из НГС в РГС -- ОТЛАЖЕНО
    {
-  .coil = 104,  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .coil = 104,  .count = 22,
+  .mode =   LED_RUN_TO_CENTER,
   .r = 0, .g = 0, .b = 255  
   },
   //6  уровень НГС
@@ -50,33 +50,36 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_LEVEL,
   .r = 0, .g = 0, .b = 255  
   },
-  //8  НГС до СР
+  //8  НГС до СР, от НГС до СР через БПУ, количество ОТЛАЖЕНО
    {
-  .coil = 105,  .count = 10,
+  .coil = 105, //105
+    .count = 70,  //19
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },
-  //9  
+  //9  от НГС в СР участок до задвижки, ОТЛАЖЕНО КОЛИЧЕСТВО
    {
-  .coil = 105,  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .coil = 119,  //105
+  .count = 18,  
+  .mode =   LED_RUN_BACKWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
-  //10 
+  //10 продолжение 9, от задвижки до регулятора линия НГС-СР, ОТЛАЖЕНО
    {
-  .coil = 105,  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .coil = 119,  //105
+  .count = 10,
+  .mode =   LED_RUN_BACKWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
-   //11 - байпас на свечу рассеивания
+   //11 - байпас на свечу рассеивания, ОТЛАЖЕНО
    {
-  .coil = 106,  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .coil = 106,  .count = 13,
+  .mode =   LED_RUN_BACKWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
-   //12 - насос
+   //12 - насос (ремень)  -- ОТЛАЖЕНО
    {
-  .coil = 107,  .count = 10,
+  .coil = 107,  .count = 13,  //
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 255  //белый
   },  
@@ -176,7 +179,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 0  //ж
   },
-  //29 - насос
+  //29 - насос - ротор - оТЛАЖЕНО
    {
   .coil = 107,  .count = 8,
   .mode =   LED_RUN_FORWARD,
@@ -290,38 +293,38 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //
   },
-  //48 и далее - наличие потока агзу - нгс
+  //48 маленькие трубы в АГЗУ
   {
   .coil = 100,
-  .count = 10,
+  .count = 24,
   .mode =   LED_RUN_FORWARD,
   .r = 0, 
   .g = 0, 
   .b = 255  
   },
-  //49
+  //49 - кусок трубы с регулятором в линии НГС - СВЕЧА, ОТЛАЖЕНО
   {
-  .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
-  .r = 0, 
-  .g = 0, 
-  .b = 255  
+  .coil = 119,
+  .count = 14,
+  .mode =   LED_RUN_BACKWARD,
+  .r = 255, 
+  .g = 255, 
+  .b = 0  
   },
-  //50
+  //50 - LED10 свеча, ОТЛАЖЕНО
   {
-  .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
-  .r = 0, 
-  .g = 0, 
-  .b = 255  
-  },
+  .coil = 105,
+  .count = 22,
+  .mode =   LED_RUN_BACKWARD,
+  .r = 255, 
+  .g = 255, 
+  .b = 0  
+  }/*,
   //51
   {
   .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .count = 1,
+  .mode =   LED_STATIC,
   .r = 0, 
   .g = 0, 
   .b = 255  
@@ -329,8 +332,8 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   //52
   {
   .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .count = 1,
+  .mode =   LED_STATIC,
   .r = 0, 
   .g = 0, 
   .b = 255  
@@ -338,8 +341,8 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   //53
   {
   .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .count = 1,
+  .mode =   LED_STATIC,
   .r = 0, 
   .g = 0, 
   .b = 255  
@@ -347,8 +350,8 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   //54
   {
   .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .count = 1,
+  .mode =   LED_STATIC,
   .r = 0, 
   .g = 0, 
   .b = 255  
@@ -356,14 +359,14 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   //55
   {
   .coil = 100,
-  .count = 10,
-  .mode =   LED_RUN_FORWARD,
+  .count = 1,
+  .mode =   LED_STATIC,
   .r = 0, 
   .g = 0, 
   .b = 255  
-  }
+  }*/
 };
-const int portStrip0[] = {48-1, 49-1, 50-1, 51-1, 52-1, 53-1, 54-1, 55-1, 1-1};   
+const int portStrip0[] = {48-1,/* 49-1, 50-1, 51-1, 52-1, 53-1, 54-1, 55-1,*/ 1-1};   
 const int portStrip1[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
 const int portStrip2[] = {45-1, 6-1, 44-1};
 const int portStrip3[] = {8-1};
@@ -377,6 +380,8 @@ const int portStrip10[] = {3-1, 4-1};
 const int portStrip11[] = {12-1};
 const int portStrip12[] =  {29-1};
 const int portStrip13[] =  {30-1,31-1,32-1,33-1,34-1,35-1,36-1,37-1,38-1,39-1,40-1,41-1,42-1};
+const int portStrip14[] = {49-1};
+const int portStrip15[] = {50-1};
 
 typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port0_t;
 typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port1_t;
@@ -392,6 +397,8 @@ typedef microLED<0, 12, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port10_t;
 typedef microLED<0, 13, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port11_t;
 typedef microLED<0, 44, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port12_t;
 typedef microLED<208, 45, -1, LED_WS2812, ORDER_GRB, CLI_HIGH> strip_port13_t;
+typedef microLED<0, A14, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port14_t;
+typedef microLED<0, A15, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port15_t;
 
 strip_port0_t port0;
 strip_port1_t port1;
@@ -407,7 +414,8 @@ strip_port10_t port10;
 strip_port11_t port11;
 strip_port12_t port12;
 strip_port13_t port13;
-
+strip_port14_t port14;  //A14
+strip_port15_t port15;  //A15
 
 strip_stat_t strip_stat[55];
 
@@ -449,7 +457,7 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
 
           for (int i = 0; i < conf.count; i++)
           {
-            port->send((stat.offset-i) % 3 == 0 ? data[0] : data[1]);         
+            port->send((stat.offset+i) % 3 == 0 ? data[0] : data[1]);         
           }         
         stat.offset--;
   break;
@@ -571,10 +579,10 @@ extern ModbusRTUServerClass modbus;
 void ProcessAllStrips()
 {
 //cli();
-   // processPort<strip_port0_t>(&port0, portStrip0, sizeof(portStrip0)/sizeof(int))  ;  
-  //  processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int), true)  ;  
+    processPort<strip_port0_t>(&port0, portStrip0, sizeof(portStrip0)/sizeof(int))  ;  
+    processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int), true)  ;  
     processPort<strip_port2_t>(&port2, portStrip2, sizeof(portStrip2)/sizeof(int))  ;  
-  /*  processPort<strip_port3_t>(&port3, portStrip3, sizeof(portStrip3)/sizeof(int))  ;  
+    processPort<strip_port3_t>(&port3, portStrip3, sizeof(portStrip3)/sizeof(int))  ;  
     processPort<strip_port4_t>(&port4, portStrip4, sizeof(portStrip4)/sizeof(int))  ;  
     processPort<strip_port5_t>(&port5, portStrip5, sizeof(portStrip5)/sizeof(int))  ;  
     processPort<strip_port6_t>(&port6, portStrip6, sizeof(portStrip6)/sizeof(int))  ;  
@@ -584,7 +592,9 @@ void ProcessAllStrips()
     processPort<strip_port10_t>(&port10, portStrip10, sizeof(portStrip10)/sizeof(int))  ;  
     processPort<strip_port11_t>(&port11, portStrip11, sizeof(portStrip11)/sizeof(int))  ;  
     processPort<strip_port12_t>(&port12, portStrip12, sizeof(portStrip12)/sizeof(int))  ;  
-    processPortBuffered<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  */
+    processPortBuffered<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  
+    processPort<strip_port14_t>(&port14, portStrip14, sizeof(portStrip14)/sizeof(int))  ;  
+    processPort<strip_port15_t>(&port15, portStrip15, sizeof(portStrip15)/sizeof(int))  ;  
  // sei();
 }
 /*void STRIP_processPort1()
