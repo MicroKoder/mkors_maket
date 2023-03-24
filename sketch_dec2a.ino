@@ -9,8 +9,8 @@
 #define HREG_COUNT 30
 #define IREG_COUNT 2
 #define COIL_COUNT 200
-Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x1, Wire);
-Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x2, Wire);
+Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x2, Wire);
+Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x1, Wire);
 ModbusRTUServerClass modbus = ModbusRTUServerClass();
 
 TaskHandler taskHandler = TaskHandler();

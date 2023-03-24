@@ -100,34 +100,41 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 12,
 		.nCoil2 = 13
 	},
-	//VD13
+	//VD13 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 18,
+		.pin1 = 22,//18,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 19,
+		.pin2 = 23,//19,
 		.nCoil1 = 14,
 		.nCoil2 = 15
 	},
-	//VD14
+	//VD14 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 22,
+		.pin1 = 19,//22,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 23,
+		.pin2 = 18,//23,
 		.nCoil1 = 16,
 		.nCoil2 = 17
 	},
-	//VD15
+	//VD15 1/10
 	{
-		.port1 = PORT_DIGITAL,
+		/*.port1 = PORT_DIGITAL,
 		.pin1 = 24,
 		.port2 = PORT_DIGITAL,
 		.pin2 = 25,
 		.nCoil1 = 18,
-		.nCoil2 = 19
+		.nCoil2 = 19*/
+    	.port1 = PORT_I2C_2,
+		.pin1 = 8,
+		.port2 = PORT_I2C_2,
+		.pin2 = 9,
+
+		.nCoil1 = 68,
+		.nCoil2 = 69
 	},
-	//VD16
+	//VD16 - где она ?????
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = 26,
@@ -136,21 +143,21 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 20,
 		.nCoil2 = 21
 	},
-	//VD17
+	//VD17  1/11  - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 28,
+		.pin1 = 29,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 29,
+		.pin2 = 28,
 		.nCoil1 = 22,
 		.nCoil2 = 23
 	},
-	//VD18
+	//VD18  2/1  - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 30,
+		.pin1 = 31,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 31,
+		.pin2 = 30,
 		.nCoil1 = 24,
 		.nCoil2 = 25
 	},
@@ -343,12 +350,19 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 66,
 		.nCoil2 = 67
 	},
-	//VD40
+	//VD40  1/9 - ОТЛАЖЕНО
 	{
-		.port1 = PORT_I2C_2,
+	/*	.port1 = PORT_I2C_2,
 		.pin1 = 8,
 		.port2 = PORT_I2C_2,
 		.pin2 = 9,
+
+		.nCoil1 = 68,
+		.nCoil2 = 69*/
+    .port1 = PORT_DIGITAL,
+		.pin1 = 25,
+		.port2 = PORT_DIGITAL,
+		.pin2 = 24,
 		.nCoil1 = 68,
 		.nCoil2 = 69
 	},

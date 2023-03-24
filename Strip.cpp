@@ -383,22 +383,22 @@ const int portStrip13[] =  {30-1,31-1,32-1,33-1,34-1,35-1,36-1,37-1,38-1,39-1,40
 const int portStrip14[] = {49-1};
 const int portStrip15[] = {50-1};
 
-typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port0_t;
-typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port1_t;
-typedef microLED<0, 4, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port2_t;
-typedef microLED<0, 5, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port3_t;
-typedef microLED<0, 6, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port4_t;
-typedef microLED<0, 7, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port5_t;
-typedef microLED<0, 8, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port6_t;
-typedef microLED<0, 9, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port7_t;
-typedef microLED<0, 10, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port8_t;
-typedef microLED<0, 11, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port9_t;
-typedef microLED<0, 12, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port10_t;
-typedef microLED<0, 13, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port11_t;
-typedef microLED<0, 44, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port12_t;
-typedef microLED<208, 45, -1, LED_WS2812, ORDER_GRB, CLI_HIGH> strip_port13_t;
-typedef microLED<0, A14, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port14_t;
-typedef microLED<0, A15, -1, LED_WS2812, ORDER_GRB, CLI_AVER> strip_port15_t;
+typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port0_t;
+typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port1_t;
+typedef microLED<0, 4, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port2_t;
+typedef microLED<0, 5, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port3_t;
+typedef microLED<0, 6, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port4_t;
+typedef microLED<0, 7, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port5_t;
+typedef microLED<0, 8, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port6_t;
+typedef microLED<0, 9, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port7_t;
+typedef microLED<0, 10, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port8_t;
+typedef microLED<0, 11, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port9_t;
+typedef microLED<0, 12, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port10_t;
+typedef microLED<0, 13, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port11_t;
+typedef microLED<0, 44, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port12_t;
+typedef microLED<208, 45, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port13_t;
+typedef microLED<0, A14, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port14_t;
+typedef microLED<0, A15, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port15_t;
 
 strip_port0_t port0;
 strip_port1_t port1;
