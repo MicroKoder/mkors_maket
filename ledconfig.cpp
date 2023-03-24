@@ -161,16 +161,16 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 24,
 		.nCoil2 = 25
 	},
-	//VD19
+	//VD19  2/5 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 32,
+		.pin1 = 33,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 33,
+		.pin2 = 32,
 		.nCoil1 = 26,
 		.nCoil2 = 27
 	},
-	//VD20
+	//VD20  2/6 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = 34,
@@ -179,16 +179,16 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 28,
 		.nCoil2 = 29
 	},
-	//VD21
+	//VD21  2/4 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 36,
+		.pin1 = 37,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 37,
+		.pin2 = 36,
 		.nCoil1 = 30,
 		.nCoil2 = 31
 	},
-	//VD22
+	//VD22  2/8 - ОТЛАЖЕНО (регулятор газа)
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = 38,
@@ -197,16 +197,16 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 32,
 		.nCoil2 = 33
 	},
-	//VD23
+	//VD23  2/3 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 40,
+		.pin1 = 41,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 41,
+		.pin2 = 40,
 		.nCoil1 = 34,
 		.nCoil2 = 35
 	},
-	//VD24
+	//VD24  2/2 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = 42,
@@ -215,43 +215,43 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 36,
 		.nCoil2 = 37
 	},
-	//VD25
+	//VD25 2/9 - ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 46,
+		.pin1 = 47,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 47,
+		.pin2 = 46,
 		.nCoil1 = 38,
 		.nCoil2 = 39
 	},
-	//VD26
+	//VD26  ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 48,
+		.pin1 = 49,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 49,
+		.pin2 = 48,
 		.nCoil1 = 40,
 		.nCoil2 = 41
 	},
-	//VD27
+	//VD27 3/1  ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 50,
+		.pin1 = 51,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 51,
+		.pin2 = 50,
 		.nCoil1 = 42,
 		.nCoil2 = 43
 	},
-	//VD28
+	//VD28 ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = 52,
+		.pin1 = 53,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 53,
+		.pin2 = 52,
 		.nCoil1 = 44,
 		.nCoil2 = 45
 	},
-	//VD29
+	//VD29 ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = A0,
@@ -260,7 +260,7 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 46,
 		.nCoil2 = 47
 	},
-	//VD30
+	//VD30  3/4 ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = A2,
@@ -269,16 +269,16 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 48,
 		.nCoil2 = 49
 	},
-	//VD31
+	//VD31  ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = A4,
+		.pin1 = A5,
 		.port2 = PORT_DIGITAL,
-		.pin2 = A5,
+		.pin2 = A4,
 		.nCoil1 = 50,
 		.nCoil2 = 51
 	},
-	//VD32
+	//VD32 ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = A6,
@@ -287,25 +287,25 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 52,
 		.nCoil2 = 53
 	},
-	//VD33
+	//VD33 ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = A8,
+		.pin1 = A9,
 		.port2 = PORT_DIGITAL,
-		.pin2 = A9,
+		.pin2 = A8,
 		.nCoil1 = 54,
 		.nCoil2 = 55
 	},
-	//VD34
+	//VD34 ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = A10,
+		.pin1 = A11,
 		.port2 = PORT_DIGITAL,
-		.pin2 = A11,
+		.pin2 = A10,
 		.nCoil1 = 56,
 		.nCoil2 = 57
 	},
-	//VD35
+	//VD35  ???
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = A12,
@@ -314,7 +314,7 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 58,
 		.nCoil2 = 59
 	},
-	//VD36
+	//VD36  
 	{
 		.port1 = PORT_I2C_2,
 		.pin1 = 0,
@@ -446,7 +446,7 @@ void LedDriverTask()
       break;
       case PORT_I2C_2: 
         _pwm2->setPWM(vd.pin1, c1? 4095:0, c1 ? 0: 4095);       // 
-          if (vd.port2 == PORT_I2C_1)
+          if (vd.port2 == PORT_I2C_2)
             _pwm2->setPWM(vd.pin2, c1? 0:4095, c1 ? 4095:0);       // 
       break;
       default:break;
