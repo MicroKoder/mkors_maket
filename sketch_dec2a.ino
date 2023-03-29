@@ -9,8 +9,8 @@
 #define HREG_COUNT 30
 #define IREG_COUNT 2
 #define COIL_COUNT 200
-Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x81, Wire);
-Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x82, Wire);
+Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x41, Wire);//отлажен
+Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x42, Wire);//?
 ModbusRTUServerClass modbus = ModbusRTUServerClass();
 
 TaskHandler taskHandler = TaskHandler();
@@ -28,6 +28,7 @@ void setup() {
   VDInit(&pwm1, &pwm2, &modbus);
 
   pwm1.begin();  
+  pwm2.begin();
   modbus.begin(1,BAUDRATE);
   modbus.configureHoldingRegisters(0,HREG_COUNT);
   modbus.configureInputRegisters(0,IREG_COUNT);
