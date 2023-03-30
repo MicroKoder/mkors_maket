@@ -84,9 +84,9 @@ const vd_t vd_config[VD_NUM]=
 	},
 	//VD11
 	{
-		.port1 = PORT_DIGITAL,
+		.port1 = PORT_I2C_1,
 		.pin1 = 14,
-		.port2 = PORT_DIGITAL,
+		.port2 = PORT_I2C_1,
 		.pin2 = 15,
 		.nCoil1 = 10,
 		.nCoil2 = 11
@@ -140,6 +140,7 @@ const vd_t vd_config[VD_NUM]=
 		.pin1 = 26,
 		.port2 = PORT_DIGITAL,
 		.pin2 = 27,
+
 		.nCoil1 = 20,
 		.nCoil2 = 21
 	},

@@ -83,59 +83,59 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 255  //белый
   },  
-  //13 - уровнь РГС
+  //13 - уровнь РГС (ВЕРХ)
    {
-  .coil = 108,  .count = 200,
+  .coil = 108,  .count = 120, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 255, .g = 255, .b = 0  //желтый
   },
   //14 - уровнь РГС
    {
-  .coil = 109,  .count = 200,
+  .coil = 109,  .count = 125, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 255, .g = 255, .b = 0  //желтый
   },  
   //15 - уровнь РГС
    {
-  .coil = 110,  .count = 200,
+  .coil = 110,  .count = 160, //ОТЛАЖЕНО КОЛИЧЕСТВО --- Последнее кольцо на этом порту
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //16 - уровнь РГС
    {
-  .coil = 111,  .count = 200,
+  .coil = 111,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
-  //17 - уровнь РГС
+  //17 - уровнь РГС //ОТЛАЖЕНО - количество
    {
-  .coil = 112,  .count = 200,
+  .coil = 112,  .count = 150,
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //18 - уровнь РГС
    {
-  .coil = 113,  .count = 200,
+  .coil = 113,  .count = 160, //ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //19 - уровнь РГС
    {
-  .coil = 114,  .count = 200,
+  .coil = 114,  .count = 140, /// ОТЛАЖЕНО
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //желтый
+  .r = 0, .g = 0, .b = 255  //синий
   },
-  //20 - уровнь РГС
+  //20 - уровнь РГС //ОТЛАЖЕНО (нижнее кольцо)
    {
-  .coil = 115,  .count = 200,
+  .coil = 115,  .count = 150, 
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //желтый
+  .r = 0, .g = 0, .b = 255  //синий
   },
-  //21 - уровнь РГС
+  //21 - уровнь РГС// НЕТУ
    {
   .coil = 116,  .count = 200,
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //желтый
+  .r = 0, .g = 0, .b = 255  //синий
   },
   //22 - уровень НГС
    {
@@ -374,7 +374,7 @@ const int portStrip4[] = {9-1, 10-1};
 const int portStrip5[] = {11-1};
 const int portStrip6[] = {2-1};
 const int portStrip7[] = {5-1};
-const int portStrip8[] = {13-1, 14-1, 15-1, 16-1, 17-1,18-1, 19-1, 20-1, 21-1, 43-1};
+const int portStrip8[] = {13-1, 14-1, 15-1};// 16-1, 17-1,18-1, 19-1, 20-1, 21-1, 43-1};
 const int portStrip9[] = {47-1, 7-1, 46-1};
 const int portStrip10[] = {3-1, 4-1};
 const int portStrip11[] = {12-1};
@@ -382,6 +382,8 @@ const int portStrip12[] =  {29-1};
 const int portStrip13[] =  {30-1,31-1,32-1,33-1,34-1,35-1,36-1,37-1,38-1,39-1,40-1,41-1,42-1};
 const int portStrip14[] = {49-1};
 const int portStrip15[] = {50-1};
+const int portStrip16[] = {16-1, 17-1, 18-1};
+const int portStrip17[] = {19-1, 20-1};
 
 typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port0_t;
 typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port1_t;
@@ -400,6 +402,10 @@ typedef microLED<208, 45, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port13_t;
 typedef microLED<0, A14, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port14_t;
 typedef microLED<0, A15, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port15_t;
 
+//дополнительные порты для уровней РГС
+typedef microLED<0,14, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port16_t;
+typedef microLED<0,15, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port17_t;
+
 strip_port0_t port0;
 strip_port1_t port1;
 strip_port2_t port2;
@@ -416,6 +422,8 @@ strip_port12_t port12;
 strip_port13_t port13;
 strip_port14_t port14;  //A14
 strip_port15_t port15;  //A15
+strip_port16_t port16;  //
+strip_port17_t port17;  //
 
 strip_stat_t strip_stat[55];
 
@@ -595,6 +603,8 @@ void ProcessAllStrips()
     processPortBuffered<strip_port13_t>(&port13, portStrip13, sizeof(portStrip13)/sizeof(int))  ;  
     processPort<strip_port14_t>(&port14, portStrip14, sizeof(portStrip14)/sizeof(int))  ;  
     processPort<strip_port15_t>(&port15, portStrip15, sizeof(portStrip15)/sizeof(int))  ;  
+    processPort<strip_port16_t>(&port16, portStrip16, sizeof(portStrip16)/sizeof(int))  ;  
+    processPort<strip_port17_t>(&port17, portStrip17, sizeof(portStrip17)/sizeof(int))  ;  
  // sei();
 }
 /*void STRIP_processPort1()
