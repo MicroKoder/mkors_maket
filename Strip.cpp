@@ -8,7 +8,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   // led 1 труба от АГЗУ в НГС, ОТЛАЖЕНО количество и направление
   {
   .coil = 100,  
-  .count = 15,
+  .count = 23,
   .mode =   LED_RUN_BACKWARD,
   .r = 0, 
   .g = 0, 
