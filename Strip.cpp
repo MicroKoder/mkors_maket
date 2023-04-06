@@ -10,7 +10,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .coil = 100,  
   .count = 23,
   .mode =   LED_RUN_BACKWARD,
-  .r = 0, 
+  .r = 255, 
   .g = 0, 
   .b = 255  
   },   
@@ -105,7 +105,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
    {
   .coil = 111,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 0, .b = 255  //синий     // ЕСЛИ Красный и Зеленый не 0 ПОМЕНЯТЬ ИХ МЕСТАМИ, только для этого кольца
   },
   //17 - уровнь РГС //ОТЛАЖЕНО - количество
    {
@@ -137,41 +137,41 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
-  //22 - уровень НГС
+  //22 - уровень НГС (ВЕРХ?)
    {
-  .coil = 120,  .count = 132,   //******ОТЛАЖЕНО    верхнее кольцо
+  .coil = 120,  .count = 200,   //******ОТЛАЖЕНО    верхнее кольцо
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 255, .g = 220, .b = 0  //синий
   },
   //23 - уровень НГС
    {
-  .coil = 121,  .count = 141, //***** ОТЛАЖЕНО
+  .coil = 121,  .count = 135, //***** ОТЛАЖЕНО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 255, .g = 255, .b = 0  //синий
   },
   //24 - уровень НГС
    {
   .coil = 122,  .count = 145, //*** ОТЛАЖЕНО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },  
   //25 - уровень НГС
    {
   .coil = 123,  .count = 141, //**** ОТЛАЖЕНО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },
   //26 - уровень НГС
    {
   .coil = 124,  .count = 132,   //** ОТЛАЖЕНО 132
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //ж
+  .r = 0, .g = 255, .b = 255  //ж
   },
   //27 - уровень НГС
    {
   .coil = 125,  .count = 100, // ?? НЕТУ ??
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //ж
+  .r = 255, .g = 0, .b = 255  //ж
   },
   //28 - уровень НГС // ?? НЕТУ ??
    {
@@ -263,10 +263,10 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_GAZ,
   .r = 255, .g = 255, .b = 255  //б
   },
-  //43 - свеча
+  //43 - свеча РГС - ОТЛАЖЕНО
    {
-  .coil = 143,  .count = 10,
-  .mode =   LED_PULSE,
+  .coil = 143,  .count = 11,
+  .mode =   LED_RUN_FROM_CENTER,
   .r = 255, .g = 255, .b = 0  //ж
   },
   //44 - уровнь в НГС верх синий
@@ -298,7 +298,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .coil = 100,
   .count = 24,
   .mode =   LED_RUN_FORWARD,
-  .r = 0, 
+  .r = 255, 
   .g = 0, 
   .b = 255  
   },
@@ -367,10 +367,10 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   }*/
 };
 const int portStrip0[] = {48-1,/* 49-1, 50-1, 51-1, 52-1, 53-1, 54-1, 55-1,*/ 1-1};   
-const int portStrip1[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
+const int portStrip4[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
 const int portStrip2[] = {45-1, 6-1, 44-1};
 const int portStrip3[] = {8-1};
-const int portStrip4[] = {9-1, 10-1};
+const int portStrip1[] = {9-1, 10-1};
 const int portStrip5[] = {11-1};
 const int portStrip6[] = {2-1};
 const int portStrip7[] = {5-1};
@@ -384,6 +384,7 @@ const int portStrip14[] = {49-1};
 const int portStrip15[] = {50-1};
 const int portStrip16[] = {16-1, 17-1, 18-1};
 const int portStrip17[] = {19-1, 20-1};
+const int portStrip18[] = {43-1};
 
 typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port0_t;
 typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port1_t;
@@ -406,6 +407,8 @@ typedef microLED<0, A15, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port15_t;
 typedef microLED<0,14, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port16_t;
 typedef microLED<0,15, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port17_t;
 
+//свеча РГС
+typedef microLED<0,26, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port18_t;
 strip_port0_t port0;
 strip_port1_t port1;
 strip_port2_t port2;
@@ -424,6 +427,7 @@ strip_port14_t port14;  //A14
 strip_port15_t port15;  //A15
 strip_port16_t port16;  //
 strip_port17_t port17;  //
+strip_port18_t port18;  //
 
 strip_stat_t strip_stat[55];
 
@@ -588,7 +592,7 @@ void ProcessAllStrips()
 {
 //cli();
     processPort<strip_port0_t>(&port0, portStrip0, sizeof(portStrip0)/sizeof(int))  ;  
-    processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int), true)  ;  
+    processPort<strip_port1_t>(&port1, portStrip1, sizeof(portStrip1)/sizeof(int))  ;  
     processPort<strip_port2_t>(&port2, portStrip2, sizeof(portStrip2)/sizeof(int))  ;  
     processPort<strip_port3_t>(&port3, portStrip3, sizeof(portStrip3)/sizeof(int))  ;  
     processPort<strip_port4_t>(&port4, portStrip4, sizeof(portStrip4)/sizeof(int))  ;  
@@ -605,6 +609,7 @@ void ProcessAllStrips()
     processPort<strip_port15_t>(&port15, portStrip15, sizeof(portStrip15)/sizeof(int))  ;  
     processPort<strip_port16_t>(&port16, portStrip16, sizeof(portStrip16)/sizeof(int))  ;  
     processPort<strip_port17_t>(&port17, portStrip17, sizeof(portStrip17)/sizeof(int))  ;  
+    processPort<strip_port18_t>(&port18, portStrip18, sizeof(portStrip18)/sizeof(int))  ;  
  // sei();
 }
 /*void STRIP_processPort1()

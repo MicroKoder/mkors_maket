@@ -49,8 +49,11 @@ void setup() {
   modbus.coilWrite(119,1);  //test
   modbus.coilWrite(143,1);  //test
 
- // for (int i = 108; i <= 126; i++)
-     modbus.coilWrite(115,1);  //отладка
+  for (int i = 108; i <= 126; i++)
+     modbus.coilWrite(i,1);  //отладка
+
+      for (int i = 10; i <= 22; i++)
+     modbus.holdingRegisterWrite(i,1);  //отладка
   
   taskHandler.RegisterTask(&TestTask,1000);
   taskHandler.RegisterTask(&LedDriverTask, 1000);

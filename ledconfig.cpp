@@ -127,9 +127,9 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 18,
 		.nCoil2 = 19*/
     	.port1 = PORT_I2C_2,
-		.pin1 = 9,
+		.pin1 = 8,
 		.port2 = PORT_I2C_2,
-		.pin2 = 8,
+		.pin2 = 9,
 
 		.nCoil1 = 68,
 		.nCoil2 = 69
@@ -361,11 +361,11 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 68,
 		.nCoil2 = 69*/
     .port1 = PORT_DIGITAL,
-		.pin1 = 25,
+		.pin1 = 24,
 		.port2 = PORT_DIGITAL,
-		.pin2 = 24,
-		.nCoil1 = 68,
-		.nCoil2 = 69
+		.pin2 = 25,
+		.nCoil1 = 18,
+		.nCoil2 = 19
 	},
 	//VD41
 	{
