@@ -1,6 +1,6 @@
 #include "Strip.h"
 #include <microLED.h>
-#define LED_STRIPE_COUNT 50
+#define LED_STRIPE_COUNT 51
 
 enum EZoneStat {EZ_OK, EZ_FIRE, EZ_FREEZE, EZ_LEAKAGE10, EZ_LEAKAGE20};
 
@@ -319,16 +319,16 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .r = 255, 
   .g = 255, 
   .b = 0  
-  }/*,
-  //51
+  },
+  //51  -- -- кусок от РГС до НУ
   {
-  .coil = 100,
-  .count = 1,
-  .mode =   LED_STATIC,
+  .coil = 102,
+  .count = 60,
+  .mode =   LED_RUN_BACKWARD,
   .r = 0, 
   .g = 0, 
   .b = 255  
-  },
+  }/*,
   //52
   {
   .coil = 100,
@@ -385,6 +385,7 @@ const int portStrip15[] = {50-1};
 const int portStrip16[] = {16-1, 17-1, 18-1};
 const int portStrip17[] = {19-1, 20-1};
 const int portStrip18[] = {43-1};
+const int portStrip19[] = {51-1}; //порт А0, кусок трубы от РГС до насоса
 
 typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port0_t;
 typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port1_t;
@@ -409,6 +410,8 @@ typedef microLED<0,15, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port17_t;
 
 //свеча РГС
 typedef microLED<0,26, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port18_t;
+
+typedef microLED<0,A0, -1, LED_WS2812, ORDER_GRB,CLI_AVER> strip_port19_t;
 strip_port0_t port0;
 strip_port1_t port1;
 strip_port2_t port2;
@@ -428,6 +431,7 @@ strip_port15_t port15;  //A15
 strip_port16_t port16;  //
 strip_port17_t port17;  //
 strip_port18_t port18;  //
+strip_port19_t port19;  //A0
 
 strip_stat_t strip_stat[55];
 
@@ -610,6 +614,7 @@ void ProcessAllStrips()
     processPort<strip_port16_t>(&port16, portStrip16, sizeof(portStrip16)/sizeof(int))  ;  
     processPort<strip_port17_t>(&port17, portStrip17, sizeof(portStrip17)/sizeof(int))  ;  
     processPort<strip_port18_t>(&port18, portStrip18, sizeof(portStrip18)/sizeof(int))  ;  
+    processPort<strip_port19_t>(&port19, portStrip19, sizeof(portStrip19)/sizeof(int))  ;  
  // sei();
 }
 /*void STRIP_processPort1()

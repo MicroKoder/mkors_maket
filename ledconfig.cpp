@@ -225,7 +225,7 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 38,
 		.nCoil2 = 39
 	},
-	//VD26  ОТЛАЖЕНО
+	//VD26  ОТЛАЖЕНО  - зд 5/1
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = 49,
@@ -297,7 +297,7 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 54,
 		.nCoil2 = 55
 	},
-	//VD34 ОТЛАЖЕНО
+	//VD34 ОТЛАЖЕНО   4/1
 	{
 		.port1 = PORT_DIGITAL,
 		.pin1 = A11,
@@ -306,12 +306,12 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 56,
 		.nCoil2 = 57
 	},
-	//VD35  ???
+	//VD35  6/1  наливная
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = A12,
+		.pin1 = A13,
 		.port2 = PORT_DIGITAL,
-		.pin2 = A13,
+		.pin2 = A12,
 		.nCoil1 = 58,
 		.nCoil2 = 59
 	},
