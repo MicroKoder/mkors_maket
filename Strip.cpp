@@ -38,16 +38,16 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_RUN_TO_CENTER,
   .r = 0, .g = 0, .b = 255  
   },
-  //6  уровень НГС
+  //6  уровень НГС    -- УРОВНЕМЕР НГС
    {
-  .coil = 1,  .count = 10,
-  .mode =   LED_LEVEL,
-  .r = 0, .g = 0, .b = 255  
+  .coil = 1,  .count = 18,
+  .mode =   LED_LEVEL_NGS,
+  .r = 255, .g = 0, .b = 255  
   },
   //7  Уровень в РГС
    {
-  .coil = 2,  .count = 10,
-  .mode =   LED_LEVEL,
+  .coil = 2,  .count = 18, //coil 2
+  .mode =   LED_LEVEL_NGS,
   .r = 0, .g = 0, .b = 255  
   },
   //8  НГС до СР, от НГС до СР через БПУ, количество ОТЛАЖЕНО
@@ -141,13 +141,13 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
    {
   .coil = 120,  .count = 200,   //******ОТЛАЖЕНО    верхнее кольцо
   .mode =   LED_STATIC,
-  .r = 255, .g = 220, .b = 0  //синий
+  .r = 255, .g = 220, .b = 0  //
   },
   //23 - уровень НГС
    {
   .coil = 121,  .count = 135, //***** ОТЛАЖЕНО
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //синий
+  .r = 0, .g = 255, .b = 255  //
   },
   //24 - уровень НГС
    {
@@ -269,17 +269,17 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_RUN_FROM_CENTER,
   .r = 255, .g = 255, .b = 0  //ж
   },
-  //44 - уровнь в НГС верх синий
+  //44 - уровнь в НГС верх синий  -- уровнемер НГС  !!!! ИСКЛЮЧЕН !!!!!
    {
-  .coil = 125,  .count = 10,
+  .coil = 125,  .count = 0,
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //ж
+  .r = 0, .g = 0, .b = 0  //ж
   },
-  //45 - уровнь в НГС верх синий
+  //45 - уровнь в НГС верх синий  ---!!!! ИСКЛЮЧЕН !!!!!!!
    {
-  .coil = 121,  .count = 10,
+  .coil = 121,  .count = 20,
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //
+  .r = 255, .g = 255, .b = 255  //
   },
   //46 - уровнь в РГС  синий
    {
@@ -368,14 +368,14 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
 };
 const int portStrip0[] = {48-1,/* 49-1, 50-1, 51-1, 52-1, 53-1, 54-1, 55-1,*/ 1-1};   
 const int portStrip4[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
-const int portStrip2[] = {45-1, 6-1, 44-1};
+const int portStrip2[] = {6-1}; //уровнемер НГС
 const int portStrip3[] = {8-1};
 const int portStrip1[] = {9-1, 10-1};
 const int portStrip5[] = {11-1};
 const int portStrip6[] = {2-1};
 const int portStrip7[] = {5-1};
 const int portStrip8[] = {13-1, 14-1, 15-1};// 16-1, 17-1,18-1, 19-1, 20-1, 21-1, 43-1};
-const int portStrip9[] = {47-1, 7-1, 46-1};
+const int portStrip9[] = {/*47-1,*/ 7-1/*, 46-1*/}; //уровнемер РГС
 const int portStrip10[] = {3-1, 4-1};
 const int portStrip11[] = {12-1};
 const int portStrip12[] =  {29-1};
@@ -389,14 +389,14 @@ const int portStrip19[] = {51-1}; //порт А0, кусок трубы от Р�
 
 typedef microLED<0, 2, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port0_t;
 typedef microLED<0, 3, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port1_t;
-typedef microLED<0, 4, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port2_t;
+typedef microLED<20, 4, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port2_t; //уровнемер НГС
 typedef microLED<0, 5, -1, LED_WS2812, ORDER_GRB, CLI_LOW> strip_port3_t;
 typedef microLED<0, 6, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port4_t;
 typedef microLED<0, 7, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port5_t;
 typedef microLED<0, 8, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port6_t;
 typedef microLED<0, 9, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port7_t;
 typedef microLED<0, 10, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port8_t;
-typedef microLED<0, 11, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port9_t;
+typedef microLED<20, 11, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port9_t;
 typedef microLED<0, 12, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port10_t;
 typedef microLED<0, 13, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port11_t;
 typedef microLED<0, 44, -1, LED_WS2812, ORDER_GRB,CLI_LOW> strip_port12_t;
@@ -446,7 +446,7 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
   
   
   //clear strip if 0
-  if (!val && conf.mode != LED_LEVEL && conf.mode != LED_GAZ)  
+  if (!val && conf.mode != LED_LEVEL_NGS && conf.mode != LED_LEVEL_RGS && conf.mode != LED_GAZ)  
   {
     for (int i = 0; i < conf.count; i++)
           {         
@@ -506,8 +506,28 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
   break;
   case LED_PULSE: //пульсация
   break;
-  case LED_LEVEL:  //отображение уровня, считывается не дискрет а holding регистр модбас
+  case LED_LEVEL_NGS:  //отображение уровня, считывается не дискрет а holding регистр модбас
+    //0..100
+    //масштабируем в 0..20 (по количеству диодов)
+    val = pModbus->holdingRegisterRead(conf.coil);
+    val *= conf.count;
+    val /=100;
+
+    //до середины
+     for (int i = 0; i < conf.count; i++)
+     {
+       mData lColor = ((i > 7) && (i<12)) ? mRGB(255,255,0) : mRGB(conf.r, conf.g, conf.b);
+       if (i<conf.count/2)
+        port->set(i, (i< val/2) ? lColor: mRGB(0, 0, 0));
+       else
+        port->set(i, ((conf.count - i)< val/2) ? lColor: mRGB(0, 0, 0));
+     }  
+        
+
+
+    port->show();     
   break;
+ 
     default:
      
       for(i=0; i< conf.count; i++)

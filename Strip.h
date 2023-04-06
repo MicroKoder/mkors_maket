@@ -17,7 +17,8 @@ typedef enum
   LED_RUN_FROM_CENTER, //от центра к краям
   LED_GAZ,  //для матрицы 4*4
   LED_PULSE, //пульсация
-  LED_LEVEL   //отображение уровня, считывается не дискрет а holding регистр модбас
+  LED_LEVEL_NGS,   //отображение уровня, считывается не дискрет а holding регистр модбас
+  LED_LEVEL_RGS
 } strip_mode_t;
 
 typedef struct
