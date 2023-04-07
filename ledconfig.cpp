@@ -85,9 +85,9 @@ const vd_t vd_config[VD_NUM]=
 	//VD11
 	{
 		.port1 = PORT_I2C_1,
-		.pin1 = 14,
+		.pin1 = 11,
 		.port2 = PORT_I2C_1,
-		.pin2 = 15,
+		.pin2 = 10,
 		.nCoil1 = 10,
 		.nCoil2 = 11
 	},
@@ -252,12 +252,16 @@ const vd_t vd_config[VD_NUM]=
 		.nCoil1 = 44,
 		.nCoil2 = 45
 	},
-	//VD29 ОТЛАЖЕНО
+	//VD29 ОТЛАЖЕНО зд 3/7
 	{
-		.port1 = PORT_DIGITAL,
+		/*.port1 = PORT_DIGITAL,
 		.pin1 = A0,
 		.port2 = PORT_DIGITAL,
-		.pin2 = A1,
+		.pin2 = A1,*/
+    .port1 = PORT_I2C_1,
+		.pin1 = 12,
+		.port2 = PORT_I2C_1,
+		.pin2 = 13,
 		.nCoil1 = 46,
 		.nCoil2 = 47
 	},

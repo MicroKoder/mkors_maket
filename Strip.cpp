@@ -85,13 +85,13 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },  
   //13 - уровнь РГС (ВЕРХ)
    {
-  .coil = 108,  .count = 120, //ОТЛАЖЕНО КОЛИЧЕСТВО
+  .coil = 108,  .count = 125, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 0  //желтый
   },
   //14 - уровнь РГС
    {
-  .coil = 109,  .count = 125, //ОТЛАЖЕНО КОЛИЧЕСТВО
+  .coil = 109,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
@@ -281,13 +281,13 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 255  //
   },
-  //46 - уровнь в РГС  синий
+  //46 - уровнь в РГС  синий  !!!ИСКЛЮЧЕН !!!
    {
   .coil = 113,  .count = 10,
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //
   },
-  //47 - уровнь в РГС  синий
+  //47 - уровнь в РГС  синий   !!! ИСКЛЮЧЕН !!!!!!
    {
   .coil = 108,  .count = 10,
   .mode =   LED_STATIC,
