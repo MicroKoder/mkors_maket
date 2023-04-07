@@ -35,7 +35,7 @@ void setup() {
   modbus.configureCoils(0,COIL_COUNT);  
  
 
-  for (int i = 0; i < COIL_COUNT; i++)
+/*  for (int i = 0; i < COIL_COUNT; i++)
      modbus.coilWrite(i,0);
   
   modbus.coilWrite(100,1);  //test
@@ -53,7 +53,8 @@ void setup() {
      modbus.coilWrite(i,1);  //отладка
 
       for (int i = 10; i <= 22; i++)
-     modbus.holdingRegisterWrite(i,1);  //отладка
+     modbus.holdingRegisterWrite(i,1);  //отладка*/
+   
   
   taskHandler.RegisterTask(&TestTask,1000);
   taskHandler.RegisterTask(&LedDriverTask, 1000);

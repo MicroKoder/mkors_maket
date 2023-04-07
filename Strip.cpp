@@ -1,28 +1,28 @@
 #include "Strip.h"
 #include <microLED.h>
-#define LED_STRIPE_COUNT 51
+#define LED_STRIPE_COUNT 53
 
 enum EZoneStat {EZ_OK, EZ_FIRE, EZ_FREEZE, EZ_LEAKAGE10, EZ_LEAKAGE20};
 
 const strip_config_t strip[LED_STRIPE_COUNT]={
   // led 1 труба от АГЗУ в НГС, ОТЛАЖЕНО количество и направление
   {
-  .coil = 100,  
+  .coil = 150,  
   .count = 23,
   .mode =   LED_RUN_BACKWARD,
   .r = 255, 
   .g = 0, 
   .b = 255  
   },   
-  //2 - НГС в РГС ОТЛАЖЕНО
+  //2 - НГС в РГС , участок от НГС после регулятора
    {
-  .coil = 101,  .count = 35,  
+  .coil = 151,  .count = 18,//35,  
   .mode =   LED_RUN_FORWARD,
   .r = 0, .g = 0, .b = 255  
   },
   //3 выход насоса НУ в АСН ОТЛАЖЕНО
    {
-  .coil = 102,  .count = 115,
+  .coil = 154,  .count = 115,
   .mode =   LED_RUN_FROM_CENTER,
   .r = 0, .g = 0, .b = 255  
   },
@@ -34,7 +34,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //5  байпас из НГС в РГС -- ОТЛАЖЕНО
    {
-  .coil = 104,  .count = 22,
+  .coil = 160,  .count = 22,
   .mode =   LED_RUN_TO_CENTER,
   .r = 0, .g = 0, .b = 255  
   },
@@ -52,82 +52,82 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //8  НГС до СР, от НГС до СР через БПУ, количество ОТЛАЖЕНО
    {
-  .coil = 105, //105
+  .coil = 161, //105
     .count = 70,  //19
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },
   //9  от НГС в СР участок до задвижки, ОТЛАЖЕНО КОЛИЧЕСТВО
    {
-  .coil = 119,  //105
+  .coil = 165,  //105
   .count = 18,  
   .mode =   LED_RUN_BACKWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
   //10 продолжение 9, от задвижки до регулятора линия НГС-СР, ОТЛАЖЕНО
    {
-  .coil = 119,  //105
+  .coil = 165,  //105
   .count = 10,
   .mode =   LED_RUN_BACKWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
    //11 - байпас на свечу рассеивания, ОТЛАЖЕНО
    {
-  .coil = 106,  .count = 13,
+  .coil = 163,  .count = 13,
   .mode =   LED_RUN_BACKWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
    //12 - насос (ремень)  -- ОТЛАЖЕНО
    {
-  .coil = 107,  .count = 13,  //
+  .coil = 164,  .count = 13,  //
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 255  //белый
   },  
   //13 - уровнь РГС (ВЕРХ)
    {
-  .coil = 108,  .count = 125, //ОТЛАЖЕНО КОЛИЧЕСТВО
+  .coil = 115,  .count = 125, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 0  //желтый
   },
   //14 - уровнь РГС
    {
-  .coil = 109,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
+  .coil = 114,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
   .r = 255, .g = 255, .b = 0  //желтый
   },  
   //15 - уровнь РГС
    {
-  .coil = 110,  .count = 160, //ОТЛАЖЕНО КОЛИЧЕСТВО --- Последнее кольцо на этом порту
+  .coil = 113,  .count = 160, //ОТЛАЖЕНО КОЛИЧЕСТВО --- Последнее кольцо на этом порту
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //16 - уровнь РГС
    {
-  .coil = 111,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
+  .coil = 112,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий     // ЕСЛИ Красный и Зеленый не 0 ПОМЕНЯТЬ ИХ МЕСТАМИ, только для этого кольца
   },
   //17 - уровнь РГС //ОТЛАЖЕНО - количество
    {
-  .coil = 112,  .count = 150,
+  .coil = 111,  .count = 150,
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //18 - уровнь РГС
    {
-  .coil = 113,  .count = 160, //ОТЛАЖЕНО
+  .coil = 110,  .count = 160, //ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //19 - уровнь РГС
    {
-  .coil = 114,  .count = 140, /// ОТЛАЖЕНО
+  .coil = 109,  .count = 140, /// ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
   //20 - уровнь РГС //ОТЛАЖЕНО (нижнее кольцо)
    {
-  .coil = 115,  .count = 150, 
+  .coil = 108,  .count = 150, 
   .mode =   LED_STATIC,
   .r = 0, .g = 0, .b = 255  //синий
   },
@@ -139,13 +139,13 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //22 - уровень НГС (ВЕРХ?)
    {
-  .coil = 120,  .count = 200,   //******ОТЛАЖЕНО    верхнее кольцо
+  .coil = 124,  .count = 200,   //******ОТЛАЖЕНО    верхнее кольцо
   .mode =   LED_STATIC,
   .r = 255, .g = 220, .b = 0  //
   },
   //23 - уровень НГС
    {
-  .coil = 121,  .count = 135, //***** ОТЛАЖЕНО
+  .coil = 123,  .count = 135, //***** ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 255, .b = 255  //
   },
@@ -157,13 +157,13 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },  
   //25 - уровень НГС
    {
-  .coil = 123,  .count = 141, //**** ОТЛАЖЕНО
+  .coil = 121,  .count = 141, //**** ОТЛАЖЕНО
   .mode =   LED_STATIC,
   .r = 0, .g = 255, .b = 255  //синий
   },
   //26 - уровень НГС
    {
-  .coil = 124,  .count = 132,   //** ОТЛАЖЕНО 132
+  .coil = 120,  .count = 132,   //** ОТЛАЖЕНО 132
   .mode =   LED_STATIC,
   .r = 0, .g = 255, .b = 255  //ж
   },
@@ -181,7 +181,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //29 - насос - ротор - оТЛАЖЕНО
    {
-  .coil = 107,  .count = 8,
+  .coil = 164,  .count = 8,
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 255  //б
   },
@@ -265,7 +265,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //43 - свеча РГС - ОТЛАЖЕНО
    {
-  .coil = 143,  .count = 11,
+  .coil = 159,  .count = 11,
   .mode =   LED_RUN_FROM_CENTER,
   .r = 255, .g = 255, .b = 0  //ж
   },
@@ -295,7 +295,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //48 маленькие трубы в АГЗУ
   {
-  .coil = 100,
+  .coil = 150,
   .count = 24,
   .mode =   LED_RUN_FORWARD,
   .r = 255, 
@@ -304,7 +304,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //49 - кусок трубы с регулятором в линии НГС - СВЕЧА, ОТЛАЖЕНО
   {
-  .coil = 119,
+  .coil = 166,
   .count = 14,
   .mode =   LED_RUN_BACKWARD,
   .r = 255, 
@@ -313,7 +313,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //50 - LED10 свеча, ОТЛАЖЕНО
   {
-  .coil = 105,
+  .coil = 161,
   .count = 22,
   .mode =   LED_RUN_BACKWARD,
   .r = 255, 
@@ -322,31 +322,31 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //51  -- -- кусок от РГС до НУ
   {
-  .coil = 102,
+  .coil = 154,
   .count = 60,
   .mode =   LED_RUN_BACKWARD,
   .r = 0, 
   .g = 0, 
   .b = 255  
+  },
+  //52 - НГС в РГС, регулятор
+  {
+  .coil = 152,
+  .count = 10,
+  .mode =   LED_RUN_FORWARD,
+  .r = 0, 
+  .g = 0, 
+  .b = 255  
+  },
+  //53 - НГС в РГС, до регулятора
+  {
+  .coil = 153,
+  .count = 10,
+  .mode =   LED_RUN_FORWARD,
+  .r = 0, 
+  .g = 0, 
+  .b = 255  
   }/*,
-  //52
-  {
-  .coil = 100,
-  .count = 1,
-  .mode =   LED_STATIC,
-  .r = 0, 
-  .g = 0, 
-  .b = 255  
-  },
-  //53
-  {
-  .coil = 100,
-  .count = 1,
-  .mode =   LED_STATIC,
-  .r = 0, 
-  .g = 0, 
-  .b = 255  
-  },
   //54
   {
   .coil = 100,
@@ -366,15 +366,15 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .b = 255  
   }*/
 };
-const int portStrip0[] = {48-1,/* 49-1, 50-1, 51-1, 52-1, 53-1, 54-1, 55-1,*/ 1-1};   
+const int portStrip0[] = {48-1,1-1};   
 const int portStrip4[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
 const int portStrip2[] = {6-1}; //уровнемер НГС
 const int portStrip3[] = {8-1};
 const int portStrip1[] = {9-1, 10-1};
 const int portStrip5[] = {11-1};
-const int portStrip6[] = {2-1};
+const int portStrip6[] = {2-1, 52-1, 53-1};
 const int portStrip7[] = {5-1};
-const int portStrip8[] = {13-1, 14-1, 15-1};// 16-1, 17-1,18-1, 19-1, 20-1, 21-1, 43-1};
+const int portStrip8[] = {13-1, 14-1, 15-1};
 const int portStrip9[] = {/*47-1,*/ 7-1/*, 46-1*/}; //уровнемер РГС
 const int portStrip10[] = {3-1, 4-1};
 const int portStrip11[] = {12-1};
