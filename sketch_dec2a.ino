@@ -34,7 +34,11 @@ void setup() {
   modbus.configureInputRegisters(0,IREG_COUNT);
   modbus.configureCoils(0,COIL_COUNT);  
  
-
+//инвертированные индикаторы аварий
+  modbus.coilWrite(6,0);  //желтый
+  modbus.coilWrite(7,1);  //красный
+  modbus.coilWrite(8,0);  //
+  modbus.coilWrite(9,1);  //
 /*  for (int i = 0; i < COIL_COUNT; i++)
      modbus.coilWrite(i,0);
   
@@ -54,8 +58,7 @@ void setup() {
 
       for (int i = 10; i <= 22; i++)
      modbus.holdingRegisterWrite(i,1);  //отладка*/
-   
-  
+//    modbus.coilWrite(154,1);  //test
   taskHandler.RegisterTask(&TestTask,1000);
   taskHandler.RegisterTask(&LedDriverTask, 1000);
 

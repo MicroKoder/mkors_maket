@@ -1,6 +1,6 @@
 #include "Strip.h"
 #include <microLED.h>
-#define LED_STRIPE_COUNT 53
+#define LED_STRIPE_COUNT 54
 
 enum EZoneStat {EZ_OK, EZ_FIRE, EZ_FREEZE, EZ_LEAKAGE10, EZ_LEAKAGE20};
 
@@ -53,7 +53,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   //8  НГС до СР, от НГС до СР через БПУ, количество ОТЛАЖЕНО
    {
   .coil = 161, //105
-    .count = 70,  //19
+    .count = 18,  //70
   .mode =   LED_RUN_FORWARD,
   .r = 255, .g = 255, .b = 0  //желтый
   },
@@ -323,8 +323,8 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   //51  -- -- кусок от РГС до НУ
   {
   .coil = 154,
-  .count = 60,
-  .mode =   LED_RUN_BACKWARD,
+  .count = 51,
+  .mode =   LED_RUN_TO_CENTER,
   .r = 0, 
   .g = 0, 
   .b = 255  
@@ -346,16 +346,16 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   .r = 0, 
   .g = 0, 
   .b = 255  
-  }/*,
+  },
   //54
   {
-  .coil = 100,
-  .count = 1,
-  .mode =   LED_STATIC,
-  .r = 0, 
-  .g = 0, 
-  .b = 255  
-  },
+  .coil = 162,
+  .count = 70-18,
+  .mode =   LED_RUN_FORWARD,
+  .r = 255, 
+  .g = 255, 
+  .b = 0  
+  }/*,
   //55
   {
   .coil = 100,
@@ -369,7 +369,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
 const int portStrip0[] = {48-1,1-1};   
 const int portStrip4[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
 const int portStrip2[] = {6-1}; //уровнемер НГС
-const int portStrip3[] = {8-1};
+const int portStrip3[] = {8-1,54-1};
 const int portStrip1[] = {9-1, 10-1};
 const int portStrip5[] = {11-1};
 const int portStrip6[] = {2-1, 52-1, 53-1};
@@ -382,6 +382,7 @@ const int portStrip12[] =  {29-1};
 const int portStrip13[] =  {30-1,31-1,32-1,33-1,34-1,35-1,36-1,37-1,38-1,39-1,40-1,41-1,42-1};
 const int portStrip14[] = {49-1};
 const int portStrip15[] = {50-1};
+
 const int portStrip16[] = {16-1, 17-1, 18-1};
 const int portStrip17[] = {19-1, 20-1};
 const int portStrip18[] = {43-1};
