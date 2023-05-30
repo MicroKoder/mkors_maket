@@ -60,7 +60,7 @@ void setup() {
      modbus.holdingRegisterWrite(i,1);  //отладка*/
 //    modbus.coilWrite(154,1);  //test
   taskHandler.RegisterTask(&TestTask,1000);
-  taskHandler.RegisterTask(&LedDriverTask, 1000);
+  taskHandler.RegisterTask(&LedDriverTask, 500);
 
  //  ---- strip setup ------
   STRIP_setModbusServer(&modbus);

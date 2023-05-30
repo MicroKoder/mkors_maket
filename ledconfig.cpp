@@ -56,7 +56,7 @@ const vd_t vd_config[VD_NUM]=
 		.pin1 = 7,
 		.port2 = PORT_NONE,
 		.pin2 = 0,
-		.nCoil1 = 6
+		.nCoil1 = 7
 	},
 	//VD8
 	{
@@ -64,7 +64,7 @@ const vd_t vd_config[VD_NUM]=
 		.pin1 = 6,
 		.port2 = PORT_NONE,
 		.pin2 = 0,
-		.nCoil1 = 7
+		.nCoil1 = 6
 	},
 	//VD9
 	{
@@ -72,7 +72,7 @@ const vd_t vd_config[VD_NUM]=
 		.pin1 = 8,
 		.port2 = PORT_NONE,
 		.pin2 = 0,
-		.nCoil1 = 8
+		.nCoil1 = 9
 	},
 	//VD10
 	{
@@ -80,14 +80,14 @@ const vd_t vd_config[VD_NUM]=
 		.pin1 = 9,
 		.port2 = PORT_NONE,
 		.pin2 = 0,
-		.nCoil1 = 9
+		.nCoil1 = 10
 	},
 	//VD11
 	{
 		.port1 = PORT_I2C_1,
-		.pin1 = 11,
+		.pin1 = 10,
 		.port2 = PORT_I2C_1,
-		.pin2 = 10,
+		.pin2 = 11,
 		.nCoil1 = 10,
 		.nCoil2 = 11
 	},
@@ -424,19 +424,28 @@ void VDInit(Adafruit_PWMServoDriver *pwm1, Adafruit_PWMServoDriver *pwm2, Modbus
       }
     }
 }
-
+static int counter=0;
 void LedDriverTask()
 {
   int c1,c2; 
   int duty;
+  counter++;  
   for (int i=0; i< VD_NUM; i++)
   {
     vd_t vd = GetVDConfig(i);
     c1 = _modbus->coilRead(vd.nCoil1);
+    c2 = _modbus->coilRead(vd.nCoil2);
     if (i>=41)
       duty = 3500;
-    else
+    else if (i>=12 && (c1==0) && (c2 ==0))
+    {
       duty = 4095;
+      c1= counter%2;
+      c2 = (counter+1)%2;    
+    }else
+    {
+      duty = 4095;      
+    }
 
     switch(vd.port1)
     {
@@ -451,9 +460,9 @@ void LedDriverTask()
       break;
       case PORT_I2C_1: 
 
-          _pwm1->setPWM(vd.pin1, c1? 4095:0, c1 ? 0: 4095);       // 
+          _pwm1->setPWM(vd.pin1, 0, c1 ? duty:0);       // 
           if (vd.port2 == PORT_I2C_1)
-            _pwm1->setPWM(vd.pin2, c1? 0:4095, c1 ? 4095:0);       // 
+            _pwm1->setPWM(vd.pin2, 0, c1 ? 0:duty);       // 
       break;
       case PORT_I2C_2: 
                 

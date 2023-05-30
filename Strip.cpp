@@ -139,7 +139,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //22 - уровень НГС (ВЕРХ?)
    {
-  .coil = 124,  .count = 200,   //******ОТЛАЖЕНО    верхнее кольцо
+  .coil = 125,  .count = 63,   //73//******ОТЛАЖЕНО    верхнее кольцо
   .mode =   LED_STATIC,
   .r = 255, .g = 220, .b = 0  //
   },
@@ -169,9 +169,9 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   },
   //27 - уровень НГС
    {
-  .coil = 125,  .count = 100, // ?? НЕТУ ??
+  .coil = 124,  .count = 131, // верхушка (вторая сверху)
   .mode =   LED_STATIC,
-  .r = 255, .g = 0, .b = 255  //ж
+  .r = 255, .g = 220, .b = 0  //ж
   },
   //28 - уровень НГС // ?? НЕТУ ??
    {
@@ -367,7 +367,7 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
   }*/
 };
 const int portStrip0[] = {48-1,1-1};   
-const int portStrip4[] = {22-1, 23-1, 24-1, 25-1, 26-1, 27-1, 28-1};  //уровни в НГС , все static //checked
+const int portStrip4[] = {22-1,27-1, 23-1, 24-1, 25-1, 26-1};  //уровни в НГС , все static //checked
 const int portStrip2[] = {6-1}; //уровнемер НГС
 const int portStrip3[] = {8-1,54-1};
 const int portStrip1[] = {9-1, 10-1};
@@ -439,19 +439,25 @@ strip_stat_t strip_stat[55];
 int port1_offset = 0;
 ModbusRTUServerClass *pModbus;
 template  <class T>
-void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat)
+void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat, bool forceRed)
 {
   int i=0;
   int val = pModbus->coilRead(conf.coil);
   mData data[2] = {mRGB(conf.r, conf.g, conf.b), mRGB(0,0,0)};
-  
+  if (forceRed)
+  {
+    if (conf.coil == 124)
+      data[0] = {mRGB(255,0,0)};
+    else
+      data[0] = {mRGB(0,255,0)};
+  }
   
   //clear strip if 0
   if (!val && conf.mode != LED_LEVEL_NGS && conf.mode != LED_LEVEL_RGS && conf.mode != LED_GAZ)  
   {
     for (int i = 0; i < conf.count; i++)
           {         
-              port->send(data[1]);
+              port->send(forceRed? data[0]: data[1]);
           }
     return;
   }
@@ -590,6 +596,7 @@ template  <class T>
 void processPort(T* port, const int portStrip[], int stripCnt, bool allStatic=false)
 {
   int value = 0;
+  bool forceRed = false;
   if (allStatic)
   {
     
@@ -606,10 +613,13 @@ void processPort(T* port, const int portStrip[], int stripCnt, bool allStatic=fa
   
   
     
-  
+  if ((void*)port == (void*)&port4)
+  {
+    forceRed =  pModbus->coilRead(80)>0;
+  }
   port->begin();  
   for (int i =0; i< stripCnt; i++)
-    processStrip<T>(port,strip[portStrip[i]], strip_stat[portStrip[i]]);  
+    processStrip<T>(port,strip[portStrip[i]], strip_stat[portStrip[i]], forceRed);  
   port->end();
 }
 extern ModbusRTUServerClass modbus;
