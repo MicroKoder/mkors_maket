@@ -136,10 +136,10 @@ const vd_t vd_config[VD_NUM]=
 	},
 	//VD16 - где она ?????
 	{
-		.port1 = PORT_DIGITAL,
-		.pin1 = 26,
-		.port2 = PORT_DIGITAL,
-		.pin2 = 27,
+		.port1 = PORT_I2C_1,
+		.pin1 = 15,
+		.port2 = PORT_I2C_1,
+		.pin2 = 14,
 
 		.nCoil1 = 20,
 		.nCoil2 = 21
