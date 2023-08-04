@@ -2,7 +2,7 @@
 
 const vd_t vd_config[VD_NUM]=
 {
-	//VD1
+	//VD1 -- фонари, начало
 	{
 		.port1 = PORT_I2C_1,
 		.pin1 = 0,
@@ -42,7 +42,7 @@ const vd_t vd_config[VD_NUM]=
 		.pin2 = 0,
 		.nCoil1 = 4
 	},
-	//VD6
+	//VD6 -- последний фонарь тут
 	{
 		.port1 = PORT_I2C_1,
 		.pin1 = 5,
@@ -259,36 +259,36 @@ const vd_t vd_config[VD_NUM]=
 		.port2 = PORT_DIGITAL,
 		.pin2 = A1,*/
     .port1 = PORT_I2C_1,
-		.pin1 = 12,
+		.pin1 = 13,
 		.port2 = PORT_I2C_1,
-		.pin2 = 13,
+		.pin2 = 12,
 		.nCoil1 = 46,
 		.nCoil2 = 47
 	},
 	//VD30  3/4 ОТЛАЖЕНО
 	{
-		.port1 = PORT_DIGITAL,
-		.pin1 = A2,
-		.port2 = PORT_DIGITAL,
-		.pin2 = A3,
+		.port1 = PORT_I2C_2,// PORT_DIGITAL,
+		.pin1 = 0,//A2,
+		.port2 = PORT_I2C_2,// PORT_DIGITAL,
+		.pin2 = 1,//A3,
 		.nCoil1 = 48,
 		.nCoil2 = 49
 	},
 	//VD31  ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = A5,
+		.pin1 = A4,
 		.port2 = PORT_DIGITAL,
-		.pin2 = A4,
+		.pin2 = A5,
 		.nCoil1 = 50,
 		.nCoil2 = 51
 	},
 	//VD32 ОТЛАЖЕНО
 	{
 		.port1 = PORT_DIGITAL,
-		.pin1 = A6,
+		.pin1 = A7,
 		.port2 = PORT_DIGITAL,
-		.pin2 = A7,
+		.pin2 = A6,
 		.nCoil1 = 52,
 		.nCoil2 = 53
 	},
@@ -321,9 +321,9 @@ const vd_t vd_config[VD_NUM]=
 	},
 	//VD36  
 	{
-		.port1 = PORT_I2C_2,
+		.port1 =PORT_NONE,// PORT_I2C_2,
 		.pin1 = 0,
-		.port2 = PORT_I2C_2,
+		.port2 = PORT_NONE,//PORT_I2C_2,
 		.pin2 = 1,
 		.nCoil1 = 60,
 		.nCoil2 = 61
@@ -386,7 +386,7 @@ const vd_t vd_config[VD_NUM]=
 		.pin1 = 14,
 		.port2 = PORT_NONE,
 		.pin2 = 0,
-		.nCoil1 = 72
+		.nCoil1 = 74
 	},
   //B2
   {
@@ -394,7 +394,7 @@ const vd_t vd_config[VD_NUM]=
 		.pin1 = 15,
 		.port2 = PORT_NONE,
 		.pin2 = 0,
-		.nCoil1 = 73		
+		.nCoil1 = 75		
 	}
 };
 
@@ -435,6 +435,7 @@ void LedDriverTask()
     vd_t vd = GetVDConfig(i);
     c1 = _modbus->coilRead(vd.nCoil1);
     c2 = _modbus->coilRead(vd.nCoil2);
+    
     if (i>=41)
       duty = 3500;
     else if (i>=12 && (c1==0) && (c2 ==0))
@@ -447,6 +448,7 @@ void LedDriverTask()
       duty = 4095;      
     }
 
+                    
     switch(vd.port1)
     {
       case PORT_DIGITAL:    

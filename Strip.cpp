@@ -87,61 +87,61 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
    {
   .coil = 115,  .count = 125, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //желтый
+  .r = 0, .g = 255, .b = 255  //желтый
   },
   //14 - уровнь РГС
    {
   .coil = 114,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //желтый
+  .r = 0, .g = 255, .b = 255  //желтый
   },  
   //15 - уровнь РГС
    {
   .coil = 113,  .count = 160, //ОТЛАЖЕНО КОЛИЧЕСТВО --- Последнее кольцо на этом порту
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },
   //16 - уровнь РГС
    {
   .coil = 112,  .count = 140, //ОТЛАЖЕНО КОЛИЧЕСТВО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий     // ЕСЛИ Красный и Зеленый не 0 ПОМЕНЯТЬ ИХ МЕСТАМИ, только для этого кольца
+  .r = 0, .g = 255, .b = 255  //синий     // ЕСЛИ Красный и Зеленый не 0 ПОМЕНЯТЬ ИХ МЕСТАМИ, только для этого кольца
   },
   //17 - уровнь РГС //ОТЛАЖЕНО - количество
    {
   .coil = 111,  .count = 150,
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },
   //18 - уровнь РГС
    {
   .coil = 110,  .count = 160, //ОТЛАЖЕНО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },
   //19 - уровнь РГС
    {
   .coil = 109,  .count = 140, /// ОТЛАЖЕНО
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },
   //20 - уровнь РГС //ОТЛАЖЕНО (нижнее кольцо)
    {
   .coil = 108,  .count = 150, 
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },
   //21 - уровнь РГС// НЕТУ
    {
   .coil = 116,  .count = 200,
   .mode =   LED_STATIC,
-  .r = 0, .g = 0, .b = 255  //синий
+  .r = 0, .g = 255, .b = 255  //синий
   },
   //22 - уровень НГС (ВЕРХ?)
    {
   .coil = 125,  .count = 63,   //73//******ОТЛАЖЕНО    верхнее кольцо
   .mode =   LED_STATIC,
-  .r = 255, .g = 220, .b = 0  //
+  .r = 0, .g = 220, .b = 255  //
   },
   //23 - уровень НГС
    {
@@ -171,13 +171,13 @@ const strip_config_t strip[LED_STRIPE_COUNT]={
    {
   .coil = 124,  .count = 131, // верхушка (вторая сверху)
   .mode =   LED_STATIC,
-  .r = 255, .g = 220, .b = 0  //ж
+  .r = 0, .g = 220, .b = 255  //
   },
   //28 - уровень НГС // ?? НЕТУ ??
    {
   .coil = 126,  .count = 200,
   .mode =   LED_STATIC,
-  .r = 255, .g = 255, .b = 0  //ж
+  .r = 0, .g = 255, .b = 255  //
   },
   //29 - насос - ротор - оТЛАЖЕНО
    {
@@ -421,7 +421,7 @@ strip_port4_t port4;
 strip_port5_t port5;
 strip_port6_t port6;
 strip_port7_t port7;
-strip_port8_t port8;
+strip_port8_t port8; //RGS
 strip_port9_t port9;
 strip_port10_t port10;
 strip_port11_t port11;
@@ -429,8 +429,8 @@ strip_port12_t port12;
 strip_port13_t port13;
 strip_port14_t port14;  //A14
 strip_port15_t port15;  //A15
-strip_port16_t port16;  //
-strip_port17_t port17;  //
+strip_port16_t port16;  //RGS
+strip_port17_t port17;  //RGS
 strip_port18_t port18;  //
 strip_port19_t port19;  //A0
 
@@ -446,10 +446,26 @@ void processStrip(T* port,const strip_config_t &conf, strip_stat_t &stat, bool f
   mData data[2] = {mRGB(conf.r, conf.g, conf.b), mRGB(0,0,0)};
   if (forceRed)
   {
-    if (conf.coil == 124)
-      data[0] = {mRGB(255,0,0)};
-    else
-      data[0] = {mRGB(0,255,0)};
+    switch(conf.coil)
+    {
+     
+      case 108:
+      case 109:
+      case 112:
+      case 113:
+      case 114:
+      case 115:       
+        data[0] = {mRGB(255,0,0)};
+        break;
+      case 124:
+      case 125: //верхний уровень НГС
+        data[0] = {mRGB(255,0,0)};
+        break;
+      default:
+        data[0] = {mRGB(0,255,0)};
+        break;
+    }        
+   
   }
   
   //clear strip if 0
@@ -611,12 +627,19 @@ void processPort(T* port, const int portStrip[], int stripCnt, bool allStatic=fa
     prevStaticValue = value;
   }
   
-  
+  void *pPort = (void*)port;
     
-  if ((void*)port == (void*)&port4)
+  if (pPort == (void*)&port4)
   {
     forceRed =  pModbus->coilRead(80)>0;
   }
+
+  if ((pPort == (void*)&port8) ||(pPort == (void*)&port16) ||(pPort == (void*)&port17))
+  {
+    forceRed =  pModbus->coilRead(81)>0;
+  }
+  
+  
   port->begin();  
   for (int i =0; i< stripCnt; i++)
     processStrip<T>(port,strip[portStrip[i]], strip_stat[portStrip[i]], forceRed);  
