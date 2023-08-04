@@ -62,10 +62,14 @@ void TestTask()
 
 void SetAlarms(bool on)
 {
-   modbus.coilWrite(6,on ? 1: 0);  //желтый
-   modbus.coilWrite(7,on ? 0: 1);  //красный
-   modbus.coilWrite(9,on ? 1: 0);  //
-   modbus.coilWrite(10,on ? 0: 1);  //
+   vd_t vd = GetVDConfig(VD7);
+    modbus.coilWrite( vd.nCoil1, on ? 0: 1);  //желтый
+   vd = GetVDConfig(VD8);
+    modbus.coilWrite(vd.nCoil1,  on ? 1: 0);  //красный
+   vd = GetVDConfig(VD9);
+    modbus.coilWrite(vd.nCoil1,  on ? 0: 1);  //
+   vd = GetVDConfig(VD10);
+    modbus.coilWrite(vd.nCoil1, on ? 1: 0);  //   
 }
 void ButtonsTask()
 {
@@ -121,7 +125,8 @@ void ButtonsTask()
   			SetZDOpened(VD40);
   			
   			modbus.coilWrite(150, 1);//поток АГЗУ
-  		break;
+  		//break;
+        demoStep++;
   		
   		case 2:
   			SetZDOpened(VD26); //свеча
@@ -135,8 +140,8 @@ void ButtonsTask()
   			//уровнемер НГС
   			modbus.holdingRegisterWrite(1,100);
   			//поток на свечу через БПУ
-  			modbus.coilWrite(161, 1);
-  			modbus.coilWrite(162, 1);
+  			//modbus.coilWrite(161, 1);
+  			//modbus.coilWrite(162, 1);
   		break;
   		
   		case 3:
