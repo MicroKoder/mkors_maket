@@ -6,7 +6,7 @@
 #include "Strip.h"
 
 #define BAUDRATE 19200
-#define HREG_COUNT 30
+#define HREG_COUNT 50
 #define IREG_COUNT 5
 #define COIL_COUNT 200
 Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x41, Wire);//отлажен
@@ -334,4 +334,41 @@ void setup() {
 void loop(){
   modbus.poll(); 
   taskHandler.Poll();
+
+  //слив НГС
+   modbus.holdingRegisterWrite(10 +20, modbus.holdingRegisterRead(10) + modbus.coilRead(60)); 
+   modbus.holdingRegisterWrite(20 +20, modbus.holdingRegisterRead(20) + modbus.coilRead(62)); 
+    //слив РГС
+   modbus.holdingRegisterWrite(16 +20, modbus.holdingRegisterRead(16) + modbus.coilRead(64)); 
+ //  modbus.holdingRegisterWrite(17 +20, modbus.holdingRegisterRead(17) + modbus.coilRead(66)); 
+
+ if (modbus.coilRead(130)>0)
+ {
+   modbus.coilWrite(130, 0);
+   SetZDOpened(VD13);
+   SetZDOpened(VD14);
+   SetZDOpened(VD17);
+   SetZDOpened(VD19);
+   SetZDOpened(VD22);
+   SetZDOpened(VD25);
+   SetZDOpened(VD26);
+   SetZDOpened(VD15);
+   SetZDOpened(VD40);
+   SetZDOpened(VD16);
+   SetZDOpened(VD18);
+
+   SetZDOpened(VD24);
+   SetZDOpened(VD21);
+   SetZDOpened(VD27);
+   SetZDOpened(VD28);
+   SetZDOpened(VD29);
+   SetZDOpened(VD41);
+   SetZDOpened(VD30);
+   SetZDOpened(VD32);
+   SetZDOpened(VD31);
+
+   SetZDOpened(VD34);
+   SetZDOpened(VD33);
+   SetZDOpened(VD35);
+  }
 }
